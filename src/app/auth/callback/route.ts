@@ -4,7 +4,7 @@ import { NextResponse, type NextRequest } from 'next/server'
 // esto es una opcion de Next.js para evitar que cachee de froma
 // estatica la ruta, y de que siempre se ejecute en le servidor
 export const dynamic = 'force-dynamic'
-
+export const runtime = 'edge'
 export async function GET (request: NextRequest) {
   const requestUrl = new URL(request.url)
   const code = requestUrl.searchParams.get('code')

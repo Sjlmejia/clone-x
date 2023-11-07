@@ -4,6 +4,7 @@ import PostLists from './components/posts-lists'
 import { type Post } from './types/posts'
 import { ComposePost } from './components/compose-post'
 import supabaseServer from './supabaseServer'
+export const runtime = 'edge'
 export default async function Home () {
   // const supabase = createServerComponentClient<Database>({ cookies })
   const { data: { session } } = await supabaseServer().auth.getSession()

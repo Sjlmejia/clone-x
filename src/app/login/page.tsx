@@ -1,5 +1,6 @@
 import { AuthButtonServer } from '@/app/components/auth-button-server'
 
+export const runtime = 'edge'
 const Login = () => {
   return (
     <section className='grid place-content-center min-h-screen'>
