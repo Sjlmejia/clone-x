@@ -1,5 +1,7 @@
+/* eslint-disable @typescript-eslint/strict-boolean-expressions */
 'use client'
-
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-expect-error
 import { experimental_useFormStatus as useFormStatus } from 'react-dom'
 
 export function ComposePostButton () {
