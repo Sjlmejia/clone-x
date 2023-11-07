@@ -1,10 +1,8 @@
-import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
-import { cookies } from 'next/headers'
 import { AuthButton } from './auth-button-client'
+import supabaseServer from '../supabaseServer'
 
 export async function AuthButtonServer () {
-  const supabase = createServerComponentClient({ cookies })
-  const { data: { session } } = await supabase.auth.getSession()
+  const { data: { session } } = await supabaseServer().auth.getSession()
 
   return <AuthButton session ={session} />
 }
