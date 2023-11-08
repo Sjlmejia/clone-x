@@ -7,12 +7,11 @@ import { Button } from '@nextui-org/react'
 export function AuthButton ({ session }: { session: Session | null }) {
   const supabase = createClientComponentClient()
   const router = useRouter()
-
   const handleSignIn = async () => {
     await supabase.auth.signInWithOAuth({
       provider: 'github',
       options: {
-        redirectTo: 'http://localhost:3000/auth/callback'
+        redirectTo: `${process.env.NEXT_PUBLIC_ROUTE_DIRECTION}/auth/callback`
       }
     })
   }
