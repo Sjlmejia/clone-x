@@ -17,11 +17,12 @@ export function AuthButton ({ session }: { session: Session | null }) {
     url = url.charAt(url.length - 1) === '/' ? url : `${url}/`
     return url
   }
+  console.log('....', getURL())
   const handleSignIn = async () => {
     await supabase.auth.signInWithOAuth({
       provider: 'github',
       options: {
-        redirectTo: `${getURL()}auth/callback`
+        redirectTo: 'http://clone-x.pages.dev/auth/callback'
       }
     })
   }
