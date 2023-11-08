@@ -9,8 +9,7 @@ export function AuthButton ({ session }: { session: Session | null }) {
   const router = useRouter()
   const getURL = () => {
     let url =
-      process?.env?.NEXT_PUBLIC_ROUTE_DIRECTION ?? // Set this to your site URL in production env.
-      'http://localhost:3000/'
+      'https://clone-x.pages.dev/'
     // Make sure to include `https://` when not localhost.
     url = url.includes('http') ? url : `https://${url}`
     // Make sure to include a trailing `/`.
