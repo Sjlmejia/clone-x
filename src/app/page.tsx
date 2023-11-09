@@ -13,8 +13,7 @@ export default async function Home () {
   }
   const { data: posts } = await supabaseServer()
     .from('posts')
-    .select('*, user:users(name, avatar_url, user_name)')
-    .order('created_at', { ascending: false })
+    .select('*')
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <section className='max-w-[800px] w-full mx-auto border-l border-r border-white/80 min-h-screen'>
