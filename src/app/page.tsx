@@ -3,15 +3,18 @@ import { redirect } from 'next/navigation'
 import PostLists from './components/posts-lists'
 import { type Post } from './types/posts'
 import { ComposePost } from './components/compose-post'
-import supabaseServer from './supabaseServer'
+import { cookies } from 'next/dist/client/components/headers'
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
+import { type Database } from './types/database'
+export const dynamic = 'force-dynamic'
 export const runtime = 'edge'
 export default async function Home () {
-  // const supabase = createServerComponentClient<Database>({ cookies })
-  const { data: { session } } = await supabaseServer().auth.getSession()
+  const supabase = createServerComponentClient<Database>({ cookies })
+  const { data: { session } } = await supabase.auth.getSession()
   if (session === null) {
     redirect('/login')
   }
-  const { data: posts } = await supabaseServer()
+  const { data: posts } = await supabase
     .from('posts')
     .select('*, user:users(name, avatar_url, user_name)')
     .order('created_at', { ascending: false })
