@@ -1,5 +1,8 @@
 import { AuthButtonServer } from './components/auth-button-server'
 import { redirect } from 'next/navigation'
+import PostLists from './components/posts-lists'
+import { type Post } from './types/posts'
+import { ComposePost } from './components/compose-post'
 import supabaseServer from './supabaseServer'
 export const runtime = 'edge'
 export default async function Home () {
@@ -9,17 +12,14 @@ export default async function Home () {
     redirect('/login')
   }
   const { data: posts } = await supabaseServer()
-    .from('users')
-    .select('*')
+    .from('posts')
+    .select('*, user:users(name, avatar_url, user_name)')
+    .order('created_at', { ascending: false })
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <section className='max-w-[800px] w-full mx-auto border-l border-r border-white/80 min-h-screen'>
-        prueba
-        <pre>
-          {
-            JSON.stringify(posts, null, 2)
-          }
-        </pre>
+        <ComposePost userAvatarUrl={session?.user?.user_metadata?.avatar_url}/>
+        <PostLists posts={posts as Post[]}/>
       </section>
       <AuthButtonServer/>
     </main>
