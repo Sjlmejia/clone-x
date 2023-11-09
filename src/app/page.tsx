@@ -9,11 +9,12 @@ export default async function Home () {
     redirect('/login')
   }
   const { data: posts } = await supabaseServer()
-    .from('posts')
+    .from('users')
     .select('*')
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <section className='max-w-[800px] w-full mx-auto border-l border-r border-white/80 min-h-screen'>
+        prueba
         <pre>
           {
             JSON.stringify(posts, null, 2)
